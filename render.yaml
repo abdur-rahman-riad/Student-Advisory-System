@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: student-advisory-system
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false          # set manually in Render dashboard
+      - key: GEMINI_API_KEY_2
+        sync: false          # optional fallback key
+      - key: GEMINI_MODEL
+        value: gemini-1.5-flash
+      - key: SHEET_ID
+        sync: false          # your Google Sheet ID
+      - key: SHEET_TAB
+        value: Sheet1
+      - key: GCP_SA_JSON
+        sync: false          # paste full service-account JSON string here
